@@ -1,0 +1,67 @@
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id           Int           @id @default(autoincrement())
+    name         String
+    email        String        @unique
+    password     String
+    nip          String
+    role         String
+    jenisKelamin String
+    jabatan      String
+    tempatLahir  String
+    tanggalLahir DateTime
+    telepon      String
+    status       Boolean
+    alamat       String
+    createdAt    DateTime      @default(now())
+    updatedAt    DateTime      @updatedAt
+    suratMasuk   SuratMasuk[]
+    suratKeluar  suratKeluar[]
+}
+
+model SuratMasuk {
+    id           Int      @id @default(autoincrement())
+    noSurat      String   @unique
+    perihal      String
+    tglSurat     DateTime
+    tglDiterima  DateTime
+    pengirim     String
+    lampiran     String
+    noAgenda     String?
+    klasifikasi  String?
+    perihalSurat String?
+    sifatSurat   String
+    status       String
+    uploadedBy   Int
+    user         User     @relation(fields: [uploadedBy], references: [id])
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+}
+
+model suratKeluar {
+    id          Int      @id @default(autoincrement())
+    tglSurat    DateTime
+    noSurat     String   @unique
+    perihal     String
+    tujuan      String
+    lampiran    String
+    kepada      String
+    tglKirim    DateTime
+    noAgenda    String?
+    klasifikasi String?
+    sifatSurat  String
+    status      String
+    tembusan    String
+    uploadedBy  Int
+    user        User     @relation(fields: [uploadedBy], references: [id])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
