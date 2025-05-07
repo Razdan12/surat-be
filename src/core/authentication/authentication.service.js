@@ -1,5 +1,5 @@
 import BaseService from '../../base/service.base.js';
-import { Forbidden, NotFound } from '../../exceptions/catch.execption.js';
+import { BadRequest, Forbidden, NotFound } from '../../exceptions/catch.execption.js';
 import { compare, hash } from '../../helpers/bcrypt.helper.js';
 import jwt, { decode } from "jsonwebtoken";
 import { generateAccessToken, generateRefreshToken } from '../../helpers/jwt.helper.js';

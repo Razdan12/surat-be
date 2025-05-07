@@ -9,14 +9,17 @@ class userService extends BaseService {
 
   findAll = async (query) => {
     const q = this.transformBrowseQuery(query);
-    const data = await this.db.user.findMany({ ...q });
-
+    const rawData = await this.db.user.findMany({ ...q });
+    const data = rawData.map(({ password, ...rest }) => rest); 
+  
     if (query.paginate) {
       const countData = await this.db.user.count({ where: q.where });
       return this.paginate(data, countData, q);
     }
+  
     return data;
   };
+  
 
   findById = async (idUser) => {
     const id = parseInt(idUser);
@@ -52,7 +55,8 @@ class userService extends BaseService {
     return data;
   };
 
-  delete = async (id) => {
+  delete = async (idUser) => {
+    const id = parseInt(idUser);
     const data = await this.db.user.delete({ where: { id } });
     return data;
   };
