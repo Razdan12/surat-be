@@ -7,8 +7,8 @@ export async function seedUsers() {
   console.log('🔁 Seeding Users...')
   const user1 = await prisma.user.create({
     data: {
-      name: "Ahmad Fauzi",
-      email: "fauzi@example.com",
+      name: "Aadmin",
+      email: "admin@example.com",
       password: await hash('password123'),
       nip: "19870321 200112 1 001",
       role: "admin",

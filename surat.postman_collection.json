@@ -1,0 +1,505 @@
+{
+	"info": {
+		"_postman_id": "271db4cd-16f1-43ef-8356-6932f1cd0e99",
+		"name": "surat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41511132",
+		"_collection_link": "https://curaweda-2819.postman.co/workspace/curaweda-Workspace~66d91954-7c35-49dd-88d9-e7d351a3070c/collection/41511132-271db4cd-16f1-43ef-8356-6932f1cd0e99?action=share&source=collection_link&creator=41511132"
+	},
+	"item": [
+		{
+			"name": "authentikasi",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();",
+									"pm.environment.set(\"access_token\", res.data.token.access_token);",
+									"console.log(res.data.token.access_token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"fauzi@example.com\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZmF1emlAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDYxMDE4NzgsImV4cCI6MTc0NjEwOTA3OH0.YAGOHulZGA-YDKCk3-_pbqbwP2R_7T5saXym6RNbmE_3bkTsLfmv0k2sTVZY6Xntf2YQsI2TFkGpsoS2bKa0NM-IVM6x0VAJP3aiQey_xQcyOEDoa2NZRZSrS-yKD1tmVPvx0PFizyrlT68d5OsJBuvjcm3xjlGzX2I5136ulx4fhQlSDhqBzgvZqCdmecivi9GlzsMiwy1iTazx067Y7HT-GZs-o_nMdHCIRs84F_IzHslD3kTfc2C9i_ggbtAzuc_p23yNHEc-_xRKWrHbBc0OUodoahV_fcVA3wlox4hqexAjlDyb8NT1HEZTY232tEfOSvNglPeKF9ZVcD7DHA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"contoh\",\n    \"email\": \"contoh@gmail.com\",\n    \"password\": \"12345678\",\n    \"nip\"   : \"12312312312\",\n    \"role\": \"User\",\n    \"jenisKelamin\": \"Laki-laki\",\n    \"jabatan\": \"camat\",\n    \"tempatLahir\": \"Purbalingga\",\n    \"tanggalLahir\": \"1/01/2022\",\n    \"telepon\": \"9312031230\",\n    \"status\": true,\n    \"alamat\": \"purbalingga\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/user/show-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"show-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZmF1emlAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDYxMDI0ODEsImV4cCI6MTc0NjEwOTY4MX0.f2vmtKAXSimZYNPoYx-RGpEn12CEc6Fnyh6YcIpXiEP7dPRa_okAO0XJQyEQPmPXR4d4VKw8g-YBzEk0rFtdV6LX_vuNBB4O-chqgjxNEadEWMys_xkl4dLsKHJfQH77VXEJLqwrnDip_U2AZt00y-m1doi1kZitWgcNateUamIjKU8AWfPZhi63RwYWbqGr5sZ4Cxptu-NBzCAsh6WGZhbDBIPLV-lsaWp5Jjnj_SwWccn8S8fg7iPVc40fdlllI8XvI1LEC4clWjsZsBkzLfFHhTeFvRirQ198VTyHWO2KLdzqI4NDPUZyeVgNHRaH4XWpjyfYdViA3DvHW9fhiw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ghania\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/user/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/user/show-one/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"show-one",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/user/delete/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "surat masuk",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1//surat-masuk/show-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"",
+								"surat-masuk",
+								"show-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create surat masuk",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZmF1emlAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDYyNDE2MzksImV4cCI6MTc0NjI0ODgzOX0.xzr1s3HO1SlwQXImcIMtmIOojrc0yepyLIJF8q4451VI0lTQhAcUkPzHcWck-MhRMPNvVdqUpHAazdwxOV6c_rO65ZFmQBFj8JC8pNxSA2sMFl4eddWSzS2Ymdb1fSlGLTowO9KTQ4zk9DtivdesA1Rit6UHvP-FATZinhO4A2so7rADyGlOE0fxkkxep447pkjZ8MLOrGK14IlX0sUTRA7TIxrH3mDGtAI8agedModYO4X7BXwtGpWEvZqoRdmG1VSuF36F68VIK5_P-pyOovUZtOe1OkF6xU7p2hO57UgbGgVRA738cyk-bn-hYMb6wwuDs-1RZFCtiwhacJAiVQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "noSurat",
+									"value": "asdasdweq",
+									"type": "text"
+								},
+								{
+									"key": "perihal",
+									"value": "daskdjasn",
+									"type": "text"
+								},
+								{
+									"key": "tglSurat",
+									"value": "01/01/2025",
+									"type": "text"
+								},
+								{
+									"key": "tglDiterima",
+									"value": "01/01/2025",
+									"type": "text"
+								},
+								{
+									"key": "pengirim",
+									"value": "dasdasdasd",
+									"type": "text"
+								},
+								{
+									"key": "lampiran",
+									"type": "file",
+									"src": "/home/razdan/Downloads/3. PKS ONIC 2023.pdf"
+								},
+								{
+									"key": "noAgenda",
+									"value": "dasdasd",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "3dsdf",
+									"type": "text"
+								},
+								{
+									"key": "perihalSurat",
+									"value": "daxasdfaw",
+									"type": "text"
+								},
+								{
+									"key": "sifatSurat",
+									"value": "wajib",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "asd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1//surat-masuk/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"",
+								"surat-masuk",
+								"create"
+							],
+							"query": [
+								{
+									"key": "noSurat",
+									"value": "21312sdsad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "surat keluar",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1//surat-masuk/show-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"",
+								"surat-masuk",
+								"show-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create surat masuk",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZmF1emlAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDYyNDE2MzksImV4cCI6MTc0NjI0ODgzOX0.xzr1s3HO1SlwQXImcIMtmIOojrc0yepyLIJF8q4451VI0lTQhAcUkPzHcWck-MhRMPNvVdqUpHAazdwxOV6c_rO65ZFmQBFj8JC8pNxSA2sMFl4eddWSzS2Ymdb1fSlGLTowO9KTQ4zk9DtivdesA1Rit6UHvP-FATZinhO4A2so7rADyGlOE0fxkkxep447pkjZ8MLOrGK14IlX0sUTRA7TIxrH3mDGtAI8agedModYO4X7BXwtGpWEvZqoRdmG1VSuF36F68VIK5_P-pyOovUZtOe1OkF6xU7p2hO57UgbGgVRA738cyk-bn-hYMb6wwuDs-1RZFCtiwhacJAiVQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "noSurat",
+									"value": "asdasdweq",
+									"type": "text"
+								},
+								{
+									"key": "perihal",
+									"value": "daskdjasn",
+									"type": "text"
+								},
+								{
+									"key": "tglSurat",
+									"value": "01/01/2025",
+									"type": "text"
+								},
+								{
+									"key": "tglDiterima",
+									"value": "01/01/2025",
+									"type": "text"
+								},
+								{
+									"key": "pengirim",
+									"value": "dasdasdasd",
+									"type": "text"
+								},
+								{
+									"key": "lampiran",
+									"type": "file",
+									"src": "/home/razdan/Downloads/3. PKS ONIC 2023.pdf"
+								},
+								{
+									"key": "noAgenda",
+									"value": "dasdasd",
+									"type": "text"
+								},
+								{
+									"key": "klasifikasi",
+									"value": "3dsdf",
+									"type": "text"
+								},
+								{
+									"key": "perihalSurat",
+									"value": "daxasdfaw",
+									"type": "text"
+								},
+								{
+									"key": "sifatSurat",
+									"value": "wajib",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "asd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1//surat-masuk/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"",
+								"surat-masuk",
+								"create"
+							],
+							"query": [
+								{
+									"key": "noSurat",
+									"value": "21312sdsad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
