@@ -1,3 +1,4 @@
+import { log } from "console";
 import BaseController from "../../base/controller.base.js";
 import { NotFound } from "../../exceptions/catch.execption.js";
 import suratMasukService from "./suratmasuk.service.js";
@@ -23,7 +24,8 @@ class suratMasukController extends BaseController {
   });
 
   create = this.wrapper(async (req, res) => {
-    const data = await this.#service.create(req.body);
+  
+    const data = await this.#service.create(req.body, req.files, req.user.id);
     return this.created(res, data, "suratMasuk berhasil dibuat");
   });
 

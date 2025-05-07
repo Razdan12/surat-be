@@ -78,7 +78,7 @@ const createFilter = (mime) => {
  */
 const uploader = (
   uploadPath = '/others',
-  fileType = 'image',
+  fileType = 'file',
   context = 'RNDM',
   limitSize = Setting.defaultLimitSize
 ) => {

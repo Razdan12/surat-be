@@ -22,13 +22,5 @@ r.post(
   controller.refresh
 );
 
-r.post(
-  '/register',
-  validatorMiddleware({ body: validator.register }),
-  controller.register
-);
-
-r.get('/generate-token', auth(), controller.generateToken);
-
 const authenticationRouter = r;
 export default authenticationRouter;

@@ -1,4 +1,5 @@
-import BaseService from "../../base/service.base.js";
+import { log } from 'console';
+import BaseService from '../../base/service.base.js';
 import prisma from '../../config/prisma.db.js';
 
 class suratMasukService extends BaseService {
@@ -22,13 +23,23 @@ class suratMasukService extends BaseService {
     return data;
   };
 
-  create = async (payload) => {
+  create = async (payload, files, idUser) => {
+    if (files && files.lampiran && files.lampiran.length > 0) {
+      payload.lampiran = files.lampiran[0].path;
+    }
+    if (idUser) {
+      payload.uploadedBy = idUser;
+    }
+    log('payload', payload);
     const data = await this.db.suratMasuk.create({ data: payload });
     return data;
   };
 
   update = async (id, payload) => {
-    const data = await this.db.suratMasuk.update({ where: { id }, data: payload });
+    const data = await this.db.suratMasuk.update({
+      where: { id },
+      data: payload,
+    });
     return data;
   };
 
@@ -38,4 +49,4 @@ class suratMasukService extends BaseService {
   };
 }
 
-export default suratMasukService;  
+export default suratMasukService;

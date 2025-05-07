@@ -11,7 +11,7 @@ export const generateAccessToken = async (user) => {
 
   return jwt.sign(payload, privateKey, {
     algorithm: 'RS256',
-    expiresIn: '60m',
+    expiresIn: '120m',
   });
 };
 

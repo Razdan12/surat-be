@@ -1,8 +1,10 @@
 import fs from 'fs';
 import { isBoolean, isDateAble, isInteger } from '../utils/type.js';
-import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
+
 import moment from 'moment';
 
+const { PrismaClient } = pkg;
 class BaseService {
   /**
    * @param {PrismaClient} db
